@@ -7,16 +7,6 @@ function PCore.ClearTemp()
 
 end
 
-if CLIENT then
-
-	print("loaded shared core on client")
-
-else
-
-	print("loaded shared core on server")
-
-end
-
 --[[
 // DESCRIPTION //
 With PCore.Send you can send information to the server or to the client (it gets detected automatically). You have to write a name for calling a function after

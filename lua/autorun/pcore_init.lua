@@ -1,16 +1,14 @@
 -------------------
---  CREATE TABLE --
+--  CREATE TABLES --
 -------------------
 
 PCore = {}
 
--------------------
---  NET MESSAGES --
--------------------
+if CLIENT then
 
-if SERVER then
+	PCore.derma = {}
 
-	util.AddNetworkString( "pcore_send" )
+else
 
 end
 
@@ -18,14 +16,32 @@ end
 --  LOAD SHARED FILES  --
 -------------------------
 
-local files = file.Find( "patchcore/shared/*.lua", "LUA" )
-table.foreach( files, function( key, s_file )
+--[[
+// DESCRIPTION //
+Loads all shared files
+]]
+local shared_files, shared_directories = file.Find( "patchcore/shared/*", "LUA" )
 
-	AddCSLuaFile("patchcore/shared/" .. s_file)
-	include( "patchcore/shared/" .. s_file)
-	print("loaded " .. s_file)
+table.foreach( shared_directories, function( key, dir ) -- Loop all directories
+
+	local files = file.Find( "patchcore/shared/" .. dir .. "/*.lua", "LUA" )
+
+	table.foreach( files, function( key, file )
+
+		AddCSLuaFile("patchcore/shared/" .. dir .. "/" .. file )
+		include( "patchcore/shared/" .. dir .. "/" .. file )
+
+	end )
 
 end )
+
+table.foreach( shared_files, function( key, file ) -- Loop files in shared folder
+
+	AddCSLuaFile("patchcore/shared/" .. file )
+	include( "patchcore/shared/" .. file )
+
+end )
+
 
 
 -------------------------
@@ -33,28 +49,65 @@ end )
 -------------------------
 
 AddCSLuaFile()
-AddCSLuaFile("patchcore/client/client.lua")
+
+--[[
+// DESCRIPTION //
+Loads all client files
+]]
+local client_files, client_directories = file.Find( "patchcore/client/*", "LUA" )
+
+table.foreach( client_directories, function( key, dir ) -- Loop all directories
+
+	local files = file.Find( "patchcore/client/" .. dir .. "/*.lua", "LUA" )
+
+	table.foreach( files, function( key, file )
+
+		AddCSLuaFile("patchcore/client/" .. dir .. "/" .. file )
+		if CLIENT then
+			include( "patchcore/client/" .. dir .. "/" .. file )
+		end
+
+	end )
+
+end )
+
+table.foreach( client_files, function( key, file ) -- Loop files in client folder
+
+	AddCSLuaFile("patchcore/client/" .. file )
+	if CLIENT then
+		include( "patchcore/client/" .. file )
+	end
+
+end )
 
 
 
----------------------------------------
---  LOAD SHARED/SERVER/CLIENT FILES  --
----------------------------------------
+-------------------------
+--  LOAD SERVER FILES  --
+-------------------------
 
+--[[
+// DESCRIPTION //
+Loads all server files
+]]
+if CLIENT then return end
 
+local server_files, server_directories = file.Find( "patchcore/server/*", "LUA" )
 
-if SERVER then
+table.foreach( server_directories, function( key, dir ) -- Loop all directories
 
-	-- INCLUDE FILES
-	include( "patchcore/server/server.lua" )
-	include( "patchcore/server/config.lua" )
-	include( "patchcore/server/sql.lua" )
+	local files = file.Find( "patchcore/server/" .. dir .. "/*.lua", "LUA" )
+
+	table.foreach( files, function( key, file )
+
+		include( "patchcore/server/" .. dir .. "/" .. file )
+
+	end )
+
+end )
+
+table.foreach( server_files, function( key, file ) -- Loop files in server folder
+
+	include( "patchcore/server/" .. file )
 	
-
-else
-
-	include( "patchcore/client/client.lua" )
-	
-end
-
-
+end )

@@ -1,5 +1,3 @@
-print("loaded server lua")
-
 function PCore.sendSQLTable( ply, info )
 
 	PCore.getSQLTable( info.tblname, nil, true, ply )
@@ -13,8 +11,6 @@ function PCore.receiveInsert( ply, info )
 end
 
 net.Receive( "pcore_send", function( len, ply )
-
-	print("got on server!")
 
 	local str_func = net.ReadString()
 	local vars = net.ReadTable()

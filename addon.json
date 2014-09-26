@@ -1,0 +1,12 @@
+{
+	"title"		:	"PatchCore (PCore)",
+	"type"		:	"tool",
+	"tags"		:	[ "fun" ],
+	"ignore"	:
+	[
+		"*.git*",
+		"*.bat",
+		"*.jpg",
+		"*.md"
+	]
+}

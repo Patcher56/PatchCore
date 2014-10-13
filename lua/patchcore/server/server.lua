@@ -1,3 +1,5 @@
+--COMPILER:SERVER
+
 function PCore.sendSQLTable( ply, info )
 
 	PCore.getSQLTable( info.tblname, nil, true, ply )

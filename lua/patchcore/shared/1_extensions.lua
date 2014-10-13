@@ -1,5 +1,12 @@
--- SYNTAX
+--COMPILER:SHARED
 
+print("")
+
+--[[
+
+COMMENTED OUT - USING JSON TO TABLE AND TABLE TO JSON IN THE FUTURE
+
+-- SYNTAX
 function PCore.tableToSyntax( tbl )
 
 	local string = "|"
@@ -26,7 +33,7 @@ function PCore.syntaxToTable( syntax )
 		local newKey = string.sub( syn, 1, sep - 1 )
 		tbl[newKey] = string.sub( syn, sep + 1 )
 
-	end)
+	end )
 	return tbl
 
 end
@@ -61,7 +68,7 @@ function table.RepairTypes( tbl )
 
 		end
 
-	end)
+	end )
 
 	return tbl
 
@@ -83,7 +90,7 @@ function table.ClearTypes( tbl )
 
 		end
 
-	end)
+	end )
 
 	return tbl
 
@@ -98,8 +105,9 @@ function table.GetColumns( tbl )
 
 		result[key] = value.name
 
-	end)
+	end )
 
 	return result
 
 end
+]]

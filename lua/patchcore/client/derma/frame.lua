@@ -1,9 +1,12 @@
+--COMPILER:CLIENT
+
 -------------
 --  FRAME  --
 -------------
 
 function PCore.derma.frame( text, pos, size, close, blur )
 
+	-- Structure
 	local frm = vgui.Create( "DFrame" )
 	pos = pos or { ScrW() / 2 - ( size[1] / 2 ), ScrH() / 2 - ( size[2] / 2 ) }
 	close = close or true
@@ -20,6 +23,7 @@ function PCore.derma.frame( text, pos, size, close, blur )
 	frm.btnMaxim:SetVisible( false )
 	frm.btnMinim:SetVisible( false )
 
+	-- Design
 	function frm:PerformLayout()
 
 		self.lblTitle:SetPos( 8, 2 )
@@ -31,6 +35,7 @@ function PCore.derma.frame( text, pos, size, close, blur )
 	end
 
 	function frm:Paint()
+
 		if blur then
 			Derma_DrawBackgroundBlur( self, self.m_fCreateTime )
 		end
@@ -38,11 +43,14 @@ function PCore.derma.frame( text, pos, size, close, blur )
 		draw.RoundedBox( 0, 0, 0, frm:GetWide(), frm:GetTall(), Color( 200, 150, 30, 255 ) )
 		draw.RoundedBox( 0, 1, 1, frm:GetWide() - 2, frm:GetTall() - 2, Color( 255, 175, 0, 255 ) )
 		draw.RoundedBox( 0, 6, 24, frm:GetWide() - 12, frm:GetTall() - 30, Color( 255, 255, 255, 255 ) )
+
 	end
 
 	function frm.btnClose:Paint()
+
 		draw.RoundedBox( 0, 0, 0, self:GetWide(), self:GetTall(), Color( 199, 80, 80, 255 ) )
 		draw.SimpleText( "x", "pcore_akbar_40_ns", 4, -16, Color( 255, 255, 255 ) )
+		
 	end
 
 	return frm

@@ -1,9 +1,12 @@
+--COMPILER:CLIENT
+
 --------------
 --  SWITCH  --
 --------------
 
 function PCore.derma.switch( pnl, text, event, pos, checked )
 
+	-- Structure
 	local switch
 	local class = pnl:GetClassName()
 
@@ -20,6 +23,7 @@ function PCore.derma.switch( pnl, text, event, pos, checked )
 
 	end
 
+	-- Design
 	function switch:PerformLayout()
 
 		local x = self.m_iIndent or 0
@@ -34,14 +38,17 @@ function PCore.derma.switch( pnl, text, event, pos, checked )
 
 	end
 
+	-- Structure
 	switch:SetText( text )
 	switch.Label:SetFont( "pcore_roboto_14_ns" )
 	switch:SizeToContents()
 	switch:SetDark( true )
 	switch:SetChecked( checked )
 
+	-- Callback
 	function switch:OnChange() event( switch:GetChecked() ) end
 
+	-- Animation
 	local curx = 0
 	local function smooth( goal )
 
@@ -55,6 +62,7 @@ function PCore.derma.switch( pnl, text, event, pos, checked )
 
 	end
 
+	-- Design
 	if switch:GetChecked() then
 
 		curx = switch.Button:GetWide() - switch:GetTall() / 1.5 - 3

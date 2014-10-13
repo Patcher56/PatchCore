@@ -1,3 +1,5 @@
+--COMPILER:SHARED
+
 function PCore.createTable( name, values, cb, drop )
 
 	if drop == nil then drop = false end
@@ -137,7 +139,7 @@ function PCore.insertRow( onServer, name, ... )
 	values = table.ClearTypes(values) -- Makes all wrong types (tables, booleans) to strings
 
 	if #values != #colnames then
-		print("Not saved! Number of Savevalues is not equal to the number of the needed values!")
+		print( "Not saved! Number of Savevalues is not equal to the number of the needed values!" )
 		return
 	end
 
@@ -157,13 +159,11 @@ function PCore.changeRow( onServer, name, wherecol, whereval, ... )
 
 			change.values[ value.name ] = values[key]
 
-		end)
+		end )
 
 		change.where = {
-
 			wherecol,
 			whereval
-
 		}
 
 
@@ -182,7 +182,7 @@ function PCore.changeRow( onServer, name, wherecol, whereval, ... )
 
 		end
 
-	end)
+	end )
 
 	if table.Count(values) != table.Count(colnames) then
 		print("Not saved! Number of Savevalues is not equal to the number of the needed values!")
@@ -209,10 +209,8 @@ function PCore.deleteRow( onServer, name, wherecol, whereval )
 		local delete = {}
 
 		delete.where = {
-
 			wherecol,
 			whereval
-
 		}
 		delete.name = name
 
@@ -230,11 +228,11 @@ end
 
 
 if CLIENT then
-	print("testing the insert")
+	
 	timer.Simple(5, function()
 
-		PCore.insertRow( true, "pcore_test", "ply", {streamurl = "test", title = "test"}, true ) -- JUST A TEST -> DELETE!
+		PCore.insertRow( true, "pcore_test", "ply", {streamurl = "test", title = "test"}, true ) --JUST A TEST -> DELETE!
 
-	end)
+	end )
 	
 end

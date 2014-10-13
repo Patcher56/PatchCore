@@ -1,3 +1,5 @@
+--COMPILER:CLIENT
+
 -- Roboto, 32 Pixels
 surface.CreateFont( "pcore_roboto_32_ns", {
 	font = "Roboto",

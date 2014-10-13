@@ -1,9 +1,12 @@
+--COMPILER:CLIENT
+
 -------------
 --  LABEL  --
 -------------
 
 function PCore.derma.label( pnl, text, pos )
 
+	-- Structure
 	local lbl
 	local class = pnl:GetClassName()
 

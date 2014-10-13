@@ -1,3 +1,4 @@
+--COMPILER:CLIENT
 
 function PCore.receiveSQLTable( package )
 

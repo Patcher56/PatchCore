@@ -1,11 +1,5 @@
 --COMPILER:SHARED
 
-print("")
-
---[[
-
-COMMENTED OUT - USING JSON TO TABLE AND TABLE TO JSON IN THE FUTURE
-
 -- SYNTAX
 function PCore.tableToSyntax( tbl )
 
@@ -110,4 +104,3 @@ function table.GetColumns( tbl )
 	return result
 
 end
-]]

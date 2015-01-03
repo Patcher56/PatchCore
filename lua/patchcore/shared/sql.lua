@@ -6,7 +6,7 @@ function PCore.createTable( name, values, cb, drop )
 
 	local function create()
 
-		local v = "'" .. table.concat( values, "' TEXT, '") .. "' TEXT"
+		local v = "'" .. table.concat( values, "' TEXT, '" ) .. "' TEXT"
 
 		sql.Query( "CREATE TABLE IF NOT EXISTS " .. name .. "( ID INTEGER PRIMARY KEY AUTOINCREMENT, " .. v .. ");" )
 
@@ -26,21 +26,21 @@ function PCore.createTable( name, values, cb, drop )
 	else
 
 		local columns = sql.Query( "PRAGMA table_info(" .. name .. ");" )
-		local rows = sql.Query("SELECT * FROM " .. name)
+		local rows = sql.Query( "SELECT * FROM " .. name )
 
 		--Check if the right column names are set in the existing table
 		local rightcols = 0
-		table.foreach(columns, function(key, col)
+		table.foreach( columns, function( key, col )
 
-			table.foreach(values, function(key, value)
+			table.foreach( values, function( key, value )
 
 				if col.name == value then
 					rightcols = rightcols + 1
 				end
 
-			end)
+			end )
 
-		end)
+		end )
 
 		if rightcols != #values then drop = true end
 
@@ -66,7 +66,7 @@ PCore.createTable( "pcore_test", {"name", "job", "house"}, function()
 	sql.Query( "INSERT INTO pcore_test( 'name', 'job', 'house' ) VALUES( 'Dominik', 'Programmer', 'true')" )
 	sql.Query( "INSERT INTO pcore_test( 'name', 'job', 'house' ) VALUES( 'Hans', 'Penner', 'false')" )
 
-end, true )
+end, false )
 
 --[[
 // DESCRIPTION //

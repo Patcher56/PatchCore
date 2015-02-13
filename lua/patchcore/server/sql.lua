@@ -1,3 +1,0 @@
---COMPILER:SERVER
-
-print("")

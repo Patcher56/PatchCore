@@ -13,12 +13,13 @@ end
 --COMPILER:STOP
 
 
-
+--COMPILER:ignore
 -------------------------
 --  LOAD SHARED FILES  --
 -------------------------
 
 -- Loads all shared files
+
 local shared_files, shared_directories = file.Find( "patchcore/shared/*", "LUA" )
 table.foreach( shared_directories, function( key, dir ) -- Loop all directories
 
@@ -38,6 +39,7 @@ table.foreach( shared_files, function( key, file ) -- Loop files in shared folde
 	include( "patchcore/shared/" .. file )
 
 end )
+
 
 
 
@@ -97,3 +99,4 @@ if SERVER then
 	end )
 
 end
+--COMPILER:/ignore

@@ -13,7 +13,7 @@ end )
 -- Receive SQL-Table from server
 function pcore.receiveSQL( tbl )
 
-	pcore.Send( pcore.sendSQL, LocalPlayer(), tbl )
+	pcore.send( pcore.sendSQL, LocalPlayer(), tbl )
 	return tbl
 
 end

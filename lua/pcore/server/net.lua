@@ -16,6 +16,6 @@ end )
 -- Send SQL-Table to client
 function pcore.sendSQL( data )
 
-	pcore.Send( "pcore.receiveSQL", data[1], pcore.getSQL( data[2] ) )
+	pcore.send( "pcore.receiveSQL", data[1], pcore.getSQL( data[2] ) )
 
 end

@@ -1,3 +1,4 @@
+--[[
 --------------
 --  SWITCH  --
 --------------
@@ -127,3 +128,4 @@ function PCore.derma.switch( pnl, text, font, checked, event, tooltip, x, y )
 	return switch
 
 end
+]]

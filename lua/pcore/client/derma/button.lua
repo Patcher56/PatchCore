@@ -1,3 +1,4 @@
+--[[
 -------------
 --  BUTTON --
 -------------
@@ -47,3 +48,4 @@ function PCore.derma.button( pnl, text, font, event, x, y, w, h )
 	return btn
 
 end
+]]

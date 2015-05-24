@@ -1,3 +1,4 @@
+--[[
 -------------
 --  FRAME  --
 -------------
@@ -53,3 +54,4 @@ function PCore.derma.frame( text, font, x, y, w, h, close, blur )
 	return frm
 
 end
+]]

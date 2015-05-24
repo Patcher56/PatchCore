@@ -1,35 +1,26 @@
---COMPILER:CLIENT
+function pcore.label( d, text, font, x, y, color )
 
--------------
---  LABEL  --
--------------
-
-function PCore.derma.label( pnl, text, font, x, y, color )
-
-	-- Structure
+	color = color or Color( 0, 0, 0 )
 	local lbl
-	local class = pnl:GetClassName()
+	local class = d:GetClassName()
 
 	if class == "Panel" then
 
 		lbl = vgui.Create( "DLabel" )
-		pnl:AddItem( lbl )
+		d:AddItem( lbl )
 
 	else
 
-		lbl = vgui.Create( "DLabel", pnl )
+		lbl = vgui.Create( "DLabel", d )
 		lbl:SetPos( x, y )
 
 	end
 
 	lbl:SetText( text )
-	lbl:SetDark( true )
 	lbl:SetFont( font )
-	if color then
-		lbl:SetFGColor( color )
-	end
+	lbl:SetColor( color )
 	lbl:SizeToContents()
 
 	return lbl
-	
+
 end

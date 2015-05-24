@@ -3,7 +3,7 @@
 --  FRAME  --
 -------------
 
-function PCore.derma.frame( text, font, x, y, w, h, close, blur )
+function pcore.derma.frame( text, font, x, y, w, h, close, blur )
 
 	-- Structure
 	local frm = vgui.Create( "DFrame" )

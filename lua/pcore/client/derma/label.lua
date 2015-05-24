@@ -1,6 +1,7 @@
 function pcore.label( d, text, font, x, y, color )
 
 	color = color or Color( 0, 0, 0 )
+
 	local lbl
 	local class = d:GetClassName()
 

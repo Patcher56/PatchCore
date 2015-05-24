@@ -2,6 +2,7 @@ function pcore.check( d, text, font, check, cb, x, y, w, h, color, tooltip )
 
 	h = h or 20
 	color = color or Color( 0, 0, 0 )
+
 	local chk
 	local class = pnl:GetClassName()
 

@@ -3,7 +3,7 @@
 --  SWITCH  --
 --------------
 
-function PCore.derma.switch( pnl, text, font, checked, event, tooltip, x, y )
+function pcore.derma.switch( pnl, text, font, checked, event, tooltip, x, y )
 
 	-- Structure
 	local switch

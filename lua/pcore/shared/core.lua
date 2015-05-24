@@ -1,3 +1,15 @@
+
+-- Check if PCore is available
+function pcore.check()
+
+	if pcore then
+		print("PCore is running!")
+	else
+		print("PCore is there but not working correctly!")
+	end
+
+end
+
 --[[
 // DESCRIPTION //
 With pcore.send you can send information to the server or to the client (auto-dectected).
@@ -6,7 +18,7 @@ You have to write a name for calling a function after receiving the message.
 WARNING: Only works with one childtable! e.g.: pcore.Test, not pcore.Net.Test
 
 // EXAMPLE //
-pcore.Send( "func.func", { arg1, arg2 } )
+pcore.send( "func.func", { arg1, arg2 } )
 pcore.getSQLTable( padmin_settings, function() print("got the table") end, true )
 ]]
 
@@ -62,14 +74,14 @@ function pcore.convert( var )
 end
 
 -- Convert vars to strings (Generic)
-function pcore.setstring( var )
+function pcore.tostring( var )
 
 	if !var then return end
 
 	if istable( var ) then
 
 		table.foreach( var, function( k, v )
-			var[k] = pcore.setstring( v )
+			var[k] = pcore.tostring( v )
 		end )
 
 	else

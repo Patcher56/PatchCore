@@ -2,7 +2,7 @@
 --  BUTTON --
 -------------
 
-function PCore.derma.button( pnl, text, font, event, x, y, w, h )
+function pcore.derma.button( pnl, text, font, event, x, y, w, h )
 
 	-- Structure
 	local btn
@@ -11,17 +11,18 @@ function PCore.derma.button( pnl, text, font, event, x, y, w, h )
 	if class == "Panel" then
 
 		btn = vgui.Create( "DButton" )
+		btn:SetDark( true )
 		pnl:AddItem( btn )
 
 	else
 
 		btn = vgui.Create( "DButton", pnl )
+		btn:SetDark( false )
 		btn:SetPos( x, y )
 		btn:SetSize( w, h )
 
 	end
 
-	btn:SetDark( true )
 	btn:SetText( text )
 	btn:SetFont( font )
 

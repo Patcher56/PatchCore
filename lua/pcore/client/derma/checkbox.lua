@@ -2,7 +2,7 @@
 --  CHECKBOX  --
 ----------------
 
-function PCore.derma.checkbox( pnl, text, font, checked, event, tooltip, x, y )
+function pcore.derma.checkbox( pnl, text, font, checked, event, tooltip, x, y )
 
 	-- Structure
 	local chk

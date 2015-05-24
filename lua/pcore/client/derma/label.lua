@@ -4,7 +4,7 @@
 --  LABEL  --
 -------------
 
-function PCore.derma.label( pnl, text, font, x, y, color )
+function pcore.derma.label( pnl, text, font, x, y, color )
 
 	-- Structure
 	local lbl

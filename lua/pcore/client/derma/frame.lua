@@ -1,23 +1,20 @@
---COMPILER:CLIENT
-
 -------------
 --  FRAME  --
 -------------
 
-function PCore.derma.frame( text, pos, size, close, blur )
+function PCore.derma.frame( text, font, x, y, w, h, close, blur )
 
 	-- Structure
 	local frm = vgui.Create( "DFrame" )
-	pos = pos or { ScrW() / 2 - ( size[1] / 2 ), ScrH() / 2 - ( size[2] / 2 ) }
 	close = close or true
 	blur = blur or false
 
-	frm:SetPos( pos[1], pos[2] )
-	frm:SetSize( size[1], size[2] )
+	frm:SetPos( x, y )
+	frm:SetSize( w, h )
 	frm:ShowCloseButton( close )
 	frm:SetTitle( text )
 	frm.lblTitle:SetColor( Color( 75, 75, 75 ) )
-	frm.lblTitle:SetFont( "pcore_roboto_14_ns" )
+	frm.lblTitle:SetFont( font )
 	frm:MakePopup()
 
 	frm.btnMaxim:SetVisible( false )

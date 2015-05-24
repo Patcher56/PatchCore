@@ -11,9 +11,9 @@ net.Receive( "pcore_send", function( len )
 end )
 
 -- Receive SQL-Table from server
-function PCore.receiveSQL( tbl )
+function pcore.receiveSQL( tbl )
 
-	PCore.Send( PCore.sendSQL, LocalPlayer(), tbl )
+	pcore.Send( pcore.sendSQL, LocalPlayer(), tbl )
 	return tbl
 
 end

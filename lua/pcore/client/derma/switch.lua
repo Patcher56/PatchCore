@@ -1,10 +1,8 @@
---COMPILER:CLIENT
-
 --------------
 --  SWITCH  --
 --------------
 
-function PCore.derma.switch( pnl, text, event, pos, checked )
+function PCore.derma.switch( pnl, text, font, checked, event, tooltip, x, y )
 
 	-- Structure
 	local switch
@@ -19,7 +17,7 @@ function PCore.derma.switch( pnl, text, event, pos, checked )
 	else
 
 		switch = vgui.Create( "DCheckBoxLabel", pnl )
-		switch:SetPos( pos[1], pos[2] )
+		switch:SetPos( x, y )
 
 	end
 
@@ -40,7 +38,7 @@ function PCore.derma.switch( pnl, text, event, pos, checked )
 
 	-- Structure
 	switch:SetText( text )
-	switch.Label:SetFont( "pcore_roboto_14_ns" )
+	switch.Label:SetFont( font )
 	switch:SizeToContents()
 	switch:SetDark( true )
 	switch:SetChecked( checked )

@@ -6,10 +6,9 @@
 
 ]]
 
-function PCore.saveJSONTable( name, tbl )
+function pcore.saveJSON( name, tbl )
 
-	tbl = util.TableToJSON( tbl )
-	file.Write( name .. ".txt", tbl )
+	file.Write( name .. ".txt", util.TableToJSON( tbl ) )
 	if file.Exists( name .. ".txt", "DATA" ) then
 		return true
 	else
@@ -26,10 +25,10 @@ end
 
 ]]
 
-function PCore.getJSONTable( name )
+function pcore.loadJSON( name )
 
 	if file.Exists( name .. ".txt", "DATA" ) then
-		return file.Read( name .. ".txt", "DATA" )
+		return util.JSONToTable( file.Read( name .. ".txt", "DATA" ) )
 	else
 		return false
 	end

@@ -1,16 +1,16 @@
 --[[
 // DESCRIPTION //
-With PCore.Send you can send information to the server or to the client (it gets detected automatically). You have to write a name for calling a function after
-receiving the message.
+With pcore.send you can send information to the server or to the client (auto-dectected).
+You have to write a name for calling a function after receiving the message.
 
-WARNING: Only works with one undertable! Ex: Working: PCore.Test Not Working: PCore.Net.Test
+WARNING: Only works with one childtable! e.g.: pcore.Test, not pcore.Net.Test
 
 // EXAMPLE //
-PCore.Send( "" )
-PCore.getSQLTable( padmin_settings, function() print("got the table") end, true )
+pcore.Send( "func.func", { arg1, arg2 } )
+pcore.getSQLTable( padmin_settings, function() print("got the table") end, true )
 ]]
 
-function PCore.Send( name, ... )
+function pcore.send( name, ... )
 
 	local vars = { ... }
 	local ply = nil
@@ -37,46 +37,47 @@ function PCore.Send( name, ... )
 
 end
 
--- Convert strings to right var-types
-function PCore.repairTypes( tbl )
+-- Convert strings to correct var-types (Generic)
+function pcore.convert( var )
 
-	if !tbl then return end
+	if !var then return end
 
-	table.foreach( tbl, function( k, v )
+	if istable( var ) then
 
-		if type( v ) != "string" then return end
+		table.foreach( var, function( k, v )
+			var[k] = pcore.convert( v )
+		end )
 
-		if v == "true" or v == "false" then
+	else
 
-			tbl[ k ] = tobool( v )
-
-		elseif tonumber( v ) != nil then
-
-			tbl[ k ] = tonumber( v )
-
+		if isstring( var ) then
+			if v == "true" or v == "false" then var = tobool( var ) end
+			if tonumber( var ) != nil then var = tonumber( var ) end
 		end
 
-	end )
+	end
 
-	return tbl
+	return var
 
 end
 
--- Convert all vars to strings
-function PCore.stringTypes( tbl )
+-- Convert vars to strings (Generic)
+function pcore.setstring( var )
 
-	if !tbl then return end
+	if !var then return end
 
-	table.foreach( tbl, function( k, v )
+	if istable( var ) then
 
-		if type( v ) == "string" then
-			return
-		else
-			tbl[ k ] = tostring( v )
-		end
+		table.foreach( var, function( k, v )
+			var[k] = pcore.setstring( v )
+		end )
 
-	end )
+	else
 
-	return tbl
+		var = tostring( var )
+
+	end
+
+	return var
 
 end

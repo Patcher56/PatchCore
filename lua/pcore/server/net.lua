@@ -14,8 +14,8 @@ net.Receive( "pcore_send", function( len, ply )
 end )
 
 -- Send SQL-Table to client
-function PCore.sendSQL( data )
+function pcore.sendSQL( data )
 
-	PCore.Send( "PCore.receiveSQL", data[ 1 ], PCore.getSQL( data[ 2 ] ) )
+	pcore.Send( "pcore.receiveSQL", data[1], pcore.getSQL( data[2] ) )
 
 end

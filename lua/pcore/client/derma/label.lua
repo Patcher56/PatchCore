@@ -4,7 +4,7 @@
 --  LABEL  --
 -------------
 
-function PCore.derma.label( pnl, text, pos )
+function PCore.derma.label( pnl, text, font, x, y, color )
 
 	-- Structure
 	local lbl
@@ -18,13 +18,16 @@ function PCore.derma.label( pnl, text, pos )
 	else
 
 		lbl = vgui.Create( "DLabel", pnl )
-		lbl:SetPos( pos[1], pos[2] )
+		lbl:SetPos( x, y )
 
 	end
 
 	lbl:SetText( text )
 	lbl:SetDark( true )
-	lbl:SetFont( "pcore_roboto_14_ns" )
+	lbl:SetFont( font )
+	if color then
+		lbl:SetFGColor( color )
+	end
 	lbl:SizeToContents()
 
 	return lbl

@@ -1,10 +1,10 @@
 -- Create SQL-Table
-function PCore.createSQL( name, drop, tbls )
+function pcore.setSQL( name, tbl, drop )
 
 	drop = drop or false
 
 	-- Compare colums
-	local cols = PCore.getSQLColums( name )
+	local cols = pcore.getSQLcolums( name )
 	table.foreach( sql.Query( "SELECT * FROM " .. name ), function( key, col )
 		if !table.HasValue( cols, col ) then drop = true end
 	end )
@@ -20,10 +20,10 @@ function PCore.createSQL( name, drop, tbls )
 	-- Create new SQL-Table
 	if !sql.TableExists( name ) then
 
-		local v = "'" .. table.concat( tbls, "' TEXT, '" ) .. "' TEXT"
+		local v = "'" .. table.concat( tbl, "' TEXT, '" ) .. "' TEXT"
 		sql.Query( "CREATE TABLE IF NOT EXISTS " .. name .. "( ID INTEGER PRIMARY KEY AUTOINCREMENT, " .. v .. ")" )
 
-		MsgC( Color(0, 255, 0), "[PatchCore] Created new table: " .. name .. "\n" )
+		MsgC( Color( 0, 255, 0 ), "[PatchCore] Created new table: " .. name .. "\n" )
 		return true
 
 	end
@@ -33,7 +33,7 @@ function PCore.createSQL( name, drop, tbls )
 end
 
 -- Get SQL-Table-Colums
-function PCore.getSQLColums( name )
+function pcore.getSQLcolums( name )
 
 	local cols = {}
 	table.foreach( sql.Query( "PRAGMA table_info( " .. name .. " )" ), function( key, col )
@@ -46,35 +46,35 @@ end
 
 --[[
 // DESCRIPTION //
-With PCore.getSQLTable you can get the content of a SQL-Table (also on the server).
+With pcore.getSQLTable you can get the content of a SQL-Table (also on the server).
 
 // EXAMPLE //
-PCore.getSQL( padmin_settings )
+pcore.getSQL( padmin_settings )
 ]]
 
-function PCore.getSQL( name )
+function pcore.getSQL( name )
 
-	return PCore.repairTypes( sql.Query( "SELECT * FROM " .. name ) )
+	return pcore.convert( sql.Query( "SELECT * FROM " .. name ) )
 
 end
 
 --[[
 // DESCRIPTION //
-With PCore.insertRow you can insert content in a SQL-Table (also on the server).
+With pcore.insertRow you can insert content in a SQL-Table (also on the server).
 
 // EXAMPLE //
-PCore.insertRow( true, padmin_settings, "showHUD", "true" )
+pcore.insertRow( true, padmin_settings, "showHUD", "true" )
 ]]
 
-function PCore.insertSQLRow( name, ... )
+function pcore.insertSQL( name, ... )
 
 	local v = { ... }
 
-	local cols = PCore.getSQLColums( name )
+	local cols = pcore.getSQLcolums( name )
 	if table.HasValue( cols, "ID" ) then table.remove( cols, 1 ) end
 
 	v = table.ClearKeys( v ) -- Make numeric keys
-	v = PCore.stringTypes( v ) -- Converts all non-strings to strings (numbers, booleans, tables)
+	v = pcore.setstring( v ) -- Converts all non-strings to strings (numbers, booleans, tables)
 
 	sql.Query( "INSERT INTO " .. name .. "( '" .. table.concat( cols, "', '") .. "' ) VALUES ( '" .. table.concat( v, "', '") .. "')" )
 
@@ -88,7 +88,7 @@ end
 
 ]]
 
-function PCore.changeSQLRow( name, col, where, v )
+function pcore.updateSQL( name, col, where, v )
 
 	v = { v }
 	v = PCore.stringTypes( v )
@@ -110,7 +110,7 @@ end
 
 ]]
 
-function PCore.deleteSQLRow( name, col, where )
+function pcore.deleteSQL( name, col, where )
 
 	sql.Query( "DELETE FROM " .. name .. " WHERE " .. col .. " = " .. where )
 	if sql.Query( "SELECT * FROM " .. name .. " WHERE " .. col .. " = " .. where ) then

@@ -1,10 +1,8 @@
---COMPILER:CLIENT
-
 -------------
 --  BUTTON --
 -------------
 
-function PCore.derma.button( pnl, text, event, pos, size )
+function PCore.derma.button( pnl, text, font, event, x, y, w, h )
 
 	-- Structure
 	local btn
@@ -13,22 +11,21 @@ function PCore.derma.button( pnl, text, event, pos, size )
 	if class == "Panel" then
 
 		btn = vgui.Create( "DButton" )
-		btn:SetDark( true )
 		pnl:AddItem( btn )
 
 	else
 
-		btn = vgui.Create( "DButton", pnl )		
-		btn:SetDark( false )
-		btn:SetPos( pos[1], pos[2] )
-		btn:SetSize( size[1], size[2] )
+		btn = vgui.Create( "DButton", pnl )
+		btn:SetPos( x, y )
+		btn:SetSize( w, h )
 
 	end
 
+	btn:SetDark( true )
 	btn:SetText( text )
-	btn:SetFont( "pcore_roboto_14_ns" )
+	btn:SetFont( font )
 
-	-- Callback
+	-- Click-Event
 	function btn.DoClick() event() end
 
 	-- Design

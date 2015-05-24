@@ -1,10 +1,8 @@
---COMPILER:CLIENT
-
 ----------------
 --  CHECKBOX  --
 ----------------
 
-function PCore.derma.checkbox( pnl, text, event, pos, checked, tooltip )
+function PCore.derma.checkbox( pnl, text, font, checked, event, tooltip, x, y )
 
 	-- Structure
 	local chk
@@ -18,7 +16,7 @@ function PCore.derma.checkbox( pnl, text, event, pos, checked, tooltip )
 	else
 
 		chk = vgui.Create( "DCheckBoxLabel", pnl )
-		chk:SetPos( pos[1], pos[2] )
+		chk:SetPos( x, y )
 
 	end
 
@@ -28,7 +26,7 @@ function PCore.derma.checkbox( pnl, text, event, pos, checked, tooltip )
 
 	tooltip = tooltip or nil
 	chk:SetTooltip( tooltip )
-	chk.Label:SetFont( "pcore_roboto_14_ns" )
+	chk.Label:SetFont( font )
 	chk:SizeToContents()
 
 	-- Callback
